@@ -4,243 +4,260 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page Aplikasi Mobile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            display: none; /* Sembunyikan konten sebelum loading selesai */
-        }
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        .loader {
-            width: 80px;
-            height: 80px;
-            border: 12px solid #f3f3f3;
-            border-top: 12px solid #3498db;
-            border-bottom: 12px solid #ff5733;
-            border-radius: 50%;
-            animation: spin 1.5s linear infinite;
-        }
-        .loader-text {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #3498db;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes blink {
-            50% { opacity: 0.5; }
+            background: linear-gradient(to bottom, #6a0dad, #8a2be2); /* Gradasi ungu */
+            color: #fff; /* Warna teks putih untuk kontras */
         }
         header {
-            background-color: #ff5733;
+            background-color: #ff0000; /* Warna merah */
             color: #fff;
             padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: fixed; /* Agar tetap terlihat saat di-scroll */
-            top: 0;
-            width: 100%;
-            z-index: 500;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box; /* Memastikan padding dihitung dalam ukuran total */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         header .logo img {
             height: 40px;
         }
-        header .search-container {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            border-radius: 20px;
-            padding: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            flex-grow: 1;
-            max-width: 400px; /* Maksimal lebar kotak pencarian */
-        }
-        header .search-input {
-            border: none;
-            padding: 5px 10px;
-            border-radius: 20px;
-            outline: none;
-            flex: 1; /* Membuat input mengisi ruang yang tersedia */
-            font-size: 16px;
-        }
-        header .search-icon {
+        .menu-toggle {
             font-size: 24px;
-            color: #ff5733;
-            margin-left: 10px;
+            cursor: pointer;
         }
         .hero {
+            position: relative;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 80px 20px 20px; /* Tambahkan padding untuk memberi ruang pada header */
+            text-align: center;
+            padding: 20px;
+            transition: background-image 1s ease-in-out;
         }
-        .video-card {
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
         }
-        .video-card iframe {
-            width: 100%;
-            height: 225px;
-            display: block;
-        }
-        .video-info {
-            padding: 10px;
-        }
-        .video-info h3 {
+        .hero p {
             font-size: 16px;
-            margin: 0;
-            color: #333;
+            margin-bottom: 20px;
         }
-        .video-info p {
+        .hero .btn {
+            background-color: #fca311;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+        .hero .btn:hover {
+            background-color: #e69500;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f0f4f8;
+            padding: 20px 0;
+            text-align: center;
+            flex-wrap: nowrap;
+        }
+        .feature-item {
+            width: 30%;
+            margin: 0 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-item.pwa-ready {
+            background-color: #6a0dad; /* Warna ungu untuk PWA Ready */
+            color: #fff; /* Warna teks putih untuk kontras */
+        }
+        .feature-item.bootstrap5 {
+            background-color: #8a2be2; /* Warna ungu untuk Bootstrap 5 */
+            color: #fff; /* Warna teks putih untuk kontras */
+        }
+        .feature-item.vanilla-js {
+            background-color: #6a0dad; /* Warna ungu untuk Vanilla JS */
+            color: #fff; /* Warna teks putih untuk kontras */
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .feature-item img {
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .feature-item h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .feature-item p {
             font-size: 14px;
-            color: #666;
-            margin: 5px 0;
+            color: #e0e0e0;
+        }
+        .cta {
+            background-image: url('https://i.pinimg.com/564x/ae/32/80/ae3280c3781d1b4bfb074342a9d0c71e.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            color: #fff;
+            position: relative;
+        }
+        .cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        .cta h2, .cta p, .cta .btn {
+            position: relative;
+            z-index: 1;
+        }
+        .cta h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .cta p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .cta .btn {
+            background-color: #fca311;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+        .cta .btn:hover {
+            background-color: #e69500;
         }
         footer {
             background-color: #007bff;
             color: #fff;
             padding: 10px;
+            text-align: center;
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
             align-items: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
         }
         footer a {
             color: #fff;
             text-decoration: none;
-            font-size: 24px;
-            transition: color 0.3s ease, transform 0.1s ease;
+            font-size: 18px;
+            transition: transform 0.2s;
         }
         footer a:hover {
-            color: #ff5733;
+            transform: scale(1.2);
         }
-        footer a:active {
-            transform: scale(0.9);
-        }
-        footer a .icon {
-            display: block;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-        footer a span {
-            font-size: 12px;
-            display: block;
-            text-align: center;
+        @media (max-width: 768px) {
+            .features {
+                justify-content: space-around;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .feature-item {
+                min-width: 30%;
+                flex-shrink: 0;
+                margin: 0 5px;
+            }
         }
     </style>
-    <!-- Link ke Font Awesome untuk menggunakan ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="loader-wrapper">
-        <div class="loader"></div>
-        <div class="loader-text">Loading...</div>
-    </div>
-
     <header>
         <div class="logo">
-            <img src="URL_LOGO" alt="Logo Aplikasi"> <!-- Ganti URL_LOGO dengan link gambar logo dari Google -->
+            <img src="https://w7.pngwing.com/pngs/722/1011/png-transparent-logo-icon-instagram-logo-instagram-logo-purple-violet-text-thumbnail.png" alt="Logo Aplikasi">
         </div>
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Cari...">
-            <div class="search-icon">
-                <i class="fas fa-search"></i>
-            </div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="video-info">
-                <h3>Judul Video Belajar 1</h3>
-                <p>Deskripsi singkat video.</p>
-            </div>
+    <section class="hero" id="hero">
+        <h1>Build with Bootstrap 5</h1>
+        <p>Build fast, responsive sites with Bootstrap.</p>
+        <a href="#" class="btn">Buy Now</a>
+    </section>
+
+    <section class="features">
+        <div class="feature-item pwa-ready">
+            <img src="https://w7.pngwing.com/pngs/282/704/png-transparent-facebook-messenger-logo-icon-facebook-facebook-logo-blue-text-trademark-thumbnail.png" alt="PWA Ready">
+            <h3>PWA Ready</h3>
         </div>
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="video-info">
-                <h3>Judul Video Belajar 2</h3>
-                <p>Deskripsi singkat video.</p>
-            </div>
+        <div class="feature-item bootstrap5">
+            <img src="https://via.placeholder.com/100x50" alt="Bootstrap 5">
+            <h3>Bootstrap 5</h3>
         </div>
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID3" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="video-info">
-                <h3>Judul Video Belajar 3</h3>
-                <p>Deskripsi singkat video.</p>
-            </div>
-        </div>
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="video-info">
-                <h3>Judul Video Belajar 4</h3>
-                <p>Deskripsi singkat video.</p>
-            </div>
+        <div class="feature-item vanilla-js">
+            <img src="https://via.placeholder.com/100x50" alt="Vanilla JS">
+            <h3>Vanilla JS</h3>
         </div>
     </section>
 
+    <section class="cta">
+        <h2>Reusable elements</h2>
+        <p>More than 220+ reusable modern design elements. Just copy the code and paste it on your desired page.</p>
+        <a href="#" class="btn">All elements</a>
+    </section>
+
     <footer>
-        <a href="#home">
-            <i class="fas fa-home icon"></i>
-            <span>Home</span>
-        </a>
-        <a href="javascript:history.back()">
-            <i class="fas fa-arrow-left icon"></i>
-            <span>Back</span>
-        </a>
-        <a href="#materi">
-            <i class="fas fa-book icon"></i>
-            <span>Materi</span>
-        </a>
-        <a href="#about">
-            <i class="fas fa-info-circle icon"></i>
-            <span>Tentang</span>
-        </a>
+        <a href="#"><i class="fas fa-home"></i></a>
+        <a href="#"><i class="fas fa-arrow-left"></i></a>
+        <a href="#"><i class="fas fa-book"></i></a>
+        <a href="#"><i class="fas fa-info-circle"></i></a>
     </footer>
 
     <script>
+        const images = [
+            'https://i.pinimg.com/564x/ae/32/80/ae3280c3781d1b4bfb074342a9d0c71e.jpg',
+            'https://via.placeholder.com/800x400?text=Slide+1',
+            'https://via.placeholder.com/800x400?text=Slide+2'
+        ];
+        let currentImageIndex = 0;
+
+        function changeBackground() {
+            const hero = document.getElementById('hero');
+            hero.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+        setInterval(changeBackground, 3000);
+
         window.onload = function() {
-            document.querySelector('.loader-wrapper').style.display = 'none';
-            document.body.style.display = 'block'; /* Tampilkan konten setelah loading selesai */
+            changeBackground();
         };
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
