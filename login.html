@@ -84,7 +84,7 @@
 </head>
 <body>
   <div class="login-container">
-    <img src="img/logoAnnur.png" alt="Logo">
+    <img src="logoAnnur.png" alt="Logo">
     <h2>Login</h2>
     <form name="myform" method="post" class="form-group">
       <input type="text" name="uname" class="inputtext" autocomplete="off" placeholder="Username">
@@ -99,73 +99,12 @@
       var un = document.forms["myform"]["uname"].value;
       var pw = document.forms["myform"]["pass"].value;
       
-      // Daftar pengguna untuk Kelas 4
-      var kelas4 = [
-        { username: "Satria4", password: "Smart4" },   // Pengguna 1 Kelas 4
-        { username: "Adit4", password: "1234564" },    // Pengguna 2 Kelas 4
-        { username: "Dedi4", password: "3049064" },    // Pengguna 3 Kelas 4
-        { username: "Alice4", password: "Wonder4" },   // Pengguna 4 Kelas 4
-        { username: "Budi4", password: "NewPass4" }    // Pengguna baru Kelas 4
-        
-      ];
+      // Data pengguna tunggal
+      var user = { username: "Satria", password: "Smart123" };
 
-      // Daftar pengguna untuk Kelas 5
-      var kelas5 = [
-        { username: "Satria5", password: "Smart5" },   // Pengguna 1 Kelas 5
-        { username: "Adit5", password: "1234565" },    // Pengguna 2 Kelas 5
-        { username: "Dedi5", password: "3049065" },    // Pengguna 3 Kelas 5
-        { username: "Alice5", password: "Wonder5" }    // Pengguna 4 Kelas 5
-      ];
-
-      // Daftar pengguna untuk Kelas 6
-      var kelas6 = [
-        { username: "Satria6", password: "Smart6" },   // Pengguna 1 Kelas 6
-        { username: "Adit6", password: "1234566" },    // Pengguna 2 Kelas 6
-        { username: "Dedi6", password: "3049066" },    // Pengguna 3 Kelas 6
-        { username: "Alice6", password: "Wonder6" }    // Pengguna 4 Kelas 6
-      ];
-
-      // Daftar pengguna untuk Kelas 7
-      var kelas7 = [
-        { username: "Satria7", password: "Smart7" },   // Pengguna 1 Kelas 7
-        { username: "Adit7", password: "1234567" },    // Pengguna 2 Kelas 7
-        { username: "Dedi7", password: "3049067" },    // Pengguna 3 Kelas 7
-        { username: "Alice7", password: "Wonder7" }    // Pengguna 4 Kelas 7
-      ];
-
-      // Daftar pengguna untuk Kelas 8
-      var kelas8 = [
-        { username: "Satria8", password: "Smart8" },   // Pengguna 1 Kelas 8
-        { username: "Adit8", password: "1234568" },    // Pengguna 2 Kelas 8
-        { username: "Dedi8", password: "3049068" },    // Pengguna 3 Kelas 8
-        { username: "Alice8", password: "Wonder8" }    // Pengguna 4 Kelas 8
-        { username: "Tayon", password: "Heru123" }    // Pengguna baru Kelas 8
-      ];
-
-      // Daftar pengguna untuk Kelas 9
-      var kelas9 = [
-        { username: "Satria9", password: "Smart9" },   // Pengguna 1 Kelas 9
-        { username: "Adit9", password: "1234569" },    // Pengguna 2 Kelas 9
-        { username: "Dedi9", password: "3049069" },    // Pengguna 3 Kelas 9
-        { username: "Alice9", password: "Wonder9" },   // Pengguna 4 Kelas 9
-        { username: "Beni9", password: "NewPass9" }    // Pengguna baru Kelas 9
-      ];
-
-      // Gabungkan semua pengguna dari Kelas 4 hingga Kelas 9
-      var users = [].concat(kelas4, kelas5, kelas6, kelas7, kelas8, kelas9);
-
-      var found = false;
-      // Memeriksa apakah username dan password cocok dengan data yang ada
-      for (var i = 0; i < users.length; i++) {
-        if (un === users[i].username && pw === users[i].password) {
-          found = true;
-          window.location.href = 'index.html'; // Jika cocok, mengarahkan ke halaman index.html
-          break;
-        }
-      }
-
-      if (!found) {
-        // Menampilkan pesan kesalahan jika username atau password tidak sesuai
+      if (un === user.username && pw === user.password) {
+        window.location.href = 'index.html'; // Jika cocok, mengarahkan ke halaman index.html
+      } else {
         document.getElementById("error-message").innerText = "Maaf username atau password tidak sesuai";
       }
     }
